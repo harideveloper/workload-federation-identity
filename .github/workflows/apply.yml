@@ -1,0 +1,48 @@
+
+name: 'Workload-Identity'
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  wif-tes:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+
+
+    - name: Auth GCP
+      uses: google-github-actions/auth@v1
+      with:
+        workload_identity_provider: 'projects/${{secrets.PROJECT_NO}}/locations/global/workloadIdentityPools/${{secrets.POOL_NAME}}/providers/${{secrets.PROVIDERS_NAME}}'
+        service_account: ${{secrets.SERVICE_ACCOUNT}}
+        token_format: "access_token"
+        create_credentials_file: true
+        activate_credentials_file: true
+    
+    # - name: Auth GCP with SA Keys
+    #   uses: google-github-actions/auth@v0
+    #   with:
+    #     credentials_json: ${{ secrets.GCP_SA_KEY }}
+    #     cleanup_credentials: false
+
+    - name: tf apply
+      run: |- 
+        cd resources
+        terraform init
+        terraform plan
+        terraform apply
+
+    # - name: tf destroy
+    #   run: |- 
+    #     cd resources
+    #     terraform destroy
