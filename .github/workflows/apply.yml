@@ -31,20 +31,14 @@ jobs:
         create_credentials_file: true
         activate_credentials_file: true
     
-    # - name: Auth GCP with SA Keys
-    #   uses: google-github-actions/auth@v0
-    #   with:
-    #     credentials_json: ${{ secrets.GCP_SA_KEY }}
-    #     cleanup_credentials: false
-
-    - name: tf apply
-      run: |- 
-        cd resources
-        terraform init
-        terraform plan -input=false
-        terraform apply -auto-approve -input=false
-
-    # - name: tf destroy
+    # - name: tf apply
     #   run: |- 
     #     cd resources
-    #     terraform destroy -auto-approve -input=false
+    #     terraform init
+    #     terraform plan -input=false
+    #     terraform apply -auto-approve -input=false
+
+    - name: tf destroy
+      run: |- 
+        cd resources
+        terraform destroy -auto-approve -input=false
