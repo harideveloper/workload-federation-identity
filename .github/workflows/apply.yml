@@ -28,8 +28,8 @@ jobs:
         workload_identity_provider: 'projects/${{secrets.PROJECT_NUMBER}}/locations/global/workloadIdentityPools/${{secrets.POOL_NAME}}/providers/${{secrets.PROVIDERS_NAME}}'
         service_account: ${{secrets.SERVICE_ACCOUNT}}
         token_format: "access_token"
-        # create_credentials_file: true
-        # activate_credentials_file: true
+        create_credentials_file: true
+        activate_credentials_file: true
     
     # - name: Auth GCP with SA Keys
     #   uses: google-github-actions/auth@v0
