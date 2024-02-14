@@ -42,4 +42,5 @@ jobs:
       run: |- 
         cd resources
         terraform init
+        terraform plan -input=false
         terraform destroy -auto-approve -input=false
