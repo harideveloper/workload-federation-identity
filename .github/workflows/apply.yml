@@ -41,10 +41,10 @@ jobs:
       run: |- 
         cd resources
         terraform init
-        terraform plan
-        terraform apply
+        terraform plan -input=false
+        terraform apply -input=false
 
     # - name: tf destroy
     #   run: |- 
     #     cd resources
-    #     terraform destroy
+    #     terraform destroy -input=false
