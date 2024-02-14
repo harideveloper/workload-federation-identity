@@ -42,7 +42,5 @@ jobs:
       run: |- 
         cd resources
         terraform init
-        pwd
-        ls -ltr
         terraform plan -input=false --var-file=terraform.tfvars
         terraform destroy -auto-approve -input=false --var-file=terraform.tfvars
