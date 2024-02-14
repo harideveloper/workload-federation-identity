@@ -35,12 +35,12 @@ jobs:
     #   run: |- 
     #     cd resources
     #     terraform init
-    #     terraform plan -input=false
-    #     terraform apply -auto-approve -input=false
+    #     terraform plan -input=false --var-file=terraform.tfvars
+    #     terraform apply -auto-approve -input=false --var-file=terraform.tfvars
 
     - name: tf destroy
       run: |- 
         cd resources
         terraform init
-        terraform plan -input=false
-        terraform destroy -auto-approve -input=false
+        terraform plan -input=false --var-file=terraform.tfvars
+        terraform destroy -auto-approve -input=false --var-file=terraform.tfvars
